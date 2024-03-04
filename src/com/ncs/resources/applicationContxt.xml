@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean definitions here -->
+	<!-- Without Autowired -->
+	<bean class="com.ncs.beans.Student" id="stdId">
+		<property name="name" value="Shrikant" />
+		<property name="rollNo" value="101" />
+		<property name="address" ref="addrID1" /> <!-- Not required as we are using Autowire byType -->
+
+	</bean>
+	
+	
+	<!-- Autowired byType -->
+	<bean class="com.ncs.beans.Student" id="stdAutowiredbyType" autowire="byType">
+		<property name="name" value="Vishal" />
+		<property name="rollNo" value="102" />
+	</bean>
+	
+		<!-- Autowired byName -->
+	<bean class="com.ncs.beans.Student" id="stdAutowiredbyName" autowire="byName">
+		<property name="name" value="Ram" />
+		<property name="rollNo" value="103" />
+	</bean>
+
+
+
+	<!-- First Bean object for Address class -->
+	<!-- 	<bean class="com.ncs.beans.Address" id="addrID1" primary="true"> --> <!-- Using primary property -->
+	<bean class="com.ncs.beans.Address" id="addrID1" autowire-candidate="false">
+		<property name="houseNo" value="03" />
+		<property name="city" value="Nashik" />
+		<property name="pinCode" value="1234" />
+	</bean>
+
+
+
+	<!-- Second Bean object for Address class -->
+	<bean class="com.ncs.beans.Address" id="address1" autowire-candidate="true">
+		<property name="houseNo" value="01" />
+		<property name="city" value="Pune" />
+		<property name="pinCode" value="999999" />
+	</bean>
+	
+	
+
+
+	
+</beans>
